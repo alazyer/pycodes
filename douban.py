@@ -31,20 +31,31 @@ def get_following(id, client):
 
 def generate_graph(id, client):
     graph = nx.DiGraph()
-    user = get_user_info(id, client)
-    followers = get_followers(id, client)
-    followings = get_following(id, client)
+    # user = get_user_info(id, client)
 
-    nodes = [id]
-    nodes.extend(followers).extend(following)
-
+    visited = []
+    to_visite = [id]
     edges = []
-    for follower in followers:
-        edge = (follower, id)
-        edges.append(edge)
-    for following in followings:
-        edge = (id, following)
-        edges.append(edge)
+
+    while to_visite:
+        id = to_visite.pop()
+        followers = get_followers(id, client)
+        followings = get_following(id, client)
+        for follower in followers:
+            if follower in visited:
+                pass
+            else:
+                to_visit.append(follower)
+                edge = (follower, id)
+                edges.append(edge)
+        for following in followings:
+            if following in visited:
+                pass
+            else:
+                to_visite.append(following)
+                edge = (id, following)
+                edges.append(edge)
+        visited.append(id)
 
     graph.add_edges_from(edges)
 
