@@ -1,10 +1,11 @@
+import os
 import networkx as nx
 
 def get_client():
 
     from doubao_client import DoubanClient
-    API_KEY = ''
-    API_SECRET = ''
+    API_KEY = os.environ.get('DOUBAN-API_KEY')
+    API_SECRET = os.environ.get('DOUBAN-API_SECRET')
     your_redirect_uri = ''
     SCOPE = 'bouban_basic_common'
 
@@ -37,10 +38,11 @@ def generate_graph(id, client):
     to_visite = [id]
     edges = []
 
-    while to_visite:
-        id = to_visite.pop()
+    while to_visite and len(visited) < 10000:
+        id = to_visite.pop(0)
         followers = get_followers(id, client)
         followings = get_following(id, client)
+
         for follower in followers:
             if follower in visited:
                 pass
@@ -48,6 +50,7 @@ def generate_graph(id, client):
                 to_visit.append(follower)
                 edge = (follower, id)
                 edges.append(edge)
+
         for following in followings:
             if following in visited:
                 pass
@@ -55,6 +58,7 @@ def generate_graph(id, client):
                 to_visite.append(following)
                 edge = (id, following)
                 edges.append(edge)
+
         visited.append(id)
 
     graph.add_edges_from(edges)
