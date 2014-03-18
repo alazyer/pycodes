@@ -4,10 +4,10 @@ import networkx as nx
 def get_client():
 
     from doubao_client import DoubanClient
-    API_KEY = os.environ.get('DOUBAN-API_KEY')
-    API_SECRET = os.environ.get('DOUBAN-API_SECRET')
+    API_KEY = os.environ.get('DOUBAN_API_KEY')
+    API_SECRET = os.environ.get('DOUBAN_API_SECRET')
     your_redirect_uri = ''
-    SCOPE = 'bouban_basic_common'
+    SCOPE = 'bouban_basic_common, community_basic_user'
 
     your_password = ''
 
