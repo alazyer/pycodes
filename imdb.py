@@ -1,4 +1,7 @@
+#!/usr/bin/env python
 # Script to gather IMDB keywords from 2013's top grossing movies.
+# following the step of Jeff Knupp, with the post in his blog.
+# "starting-a-python-project-the-right-way"
 
 import sys
 import requests
