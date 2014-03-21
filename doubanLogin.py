@@ -52,20 +52,23 @@ def login(login_url, login_email, login_password):
                     print "login successly with the validation code"
                     return s
                 else:
+                    return s
                     print "Something wrong! Try again later, please"
             else:
+                return s
                 print "Failed to parse the captcha image id for validation! Please try again later."
         else:
+            return s
             print "Failed to parse the captcha image url to download the image! Please try again later."
             
     elif res.url == 'http://www.douban.com':
         print "login successly without validation code"
         return s
     else:
+        return s
         print "Something wrong! Try again later, please"
 
 if __name__ == '__main__':
     login_url = "https://www.douban.com/accounts/login"
     login_email, login_password = getData()
     login(login_url, login_email, login_password)
-
