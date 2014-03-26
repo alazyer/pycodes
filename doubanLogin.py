@@ -6,7 +6,18 @@ import sys
 import requests
 
 def requestsPrepare():
+    
+    proxies = {
+        'http': 'http://127.0.0.1:8087',
+        'https': 'http://127.0.0.1:8087',
+    }
+
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:27.0) Gecko/20100101 Firefox/27.0',     
+    }
+    
     s = requests.Session()
+    s.proxies = proxies
     s.mount('http://', requests.adapters.HTTPAdapter(max_retries=5))
     s.mount('http://', requests.adapters.HTTPAdapter(max_retries=5))
     
