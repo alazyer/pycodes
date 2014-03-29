@@ -12,7 +12,19 @@ import json
 import socket
 import requests
 
+def ipinfo_io(ip=None):
+    if ip:
+        res = requests.get('http://ipinfo.io/%s/json' % ip)
+    else:
+        res = requests.get('http://ipinfo.io/json')
+        
+    for k, v in res.json().iteritems():
+        print k, '\t', v
+
 if __name__ == '__main__':
+
+    ipinfo_io()
+    
     if len(sys.argv) == 2:
         domain = sys.argv[1]
 
