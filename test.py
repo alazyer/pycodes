@@ -6,3 +6,4 @@ def print_own(i):
 
 if __name__ == '__main__':
     print_own(10)
+    print "test"
