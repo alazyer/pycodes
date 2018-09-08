@@ -15,6 +15,6 @@ class DbClient(BaseDbClient):
             password=os.getenv('DB_PASSWORD', '123456')
         )
         if db:
-            kwargs['db_name'] = db_name
+            kwargs['dbname'] = db_name
 
         return kwargs

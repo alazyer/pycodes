@@ -32,5 +32,8 @@ class BaseDbClient(object):
 
         return conn.cursor()
 
-    def execute(self, sql):
-        return self.get_cursor().execute(sql)
+    def execute(self, sql, param):
+        return self.get_cursor().execute(sql, param)
+
+    def executemany(self, sql, param_list):
+        return self.get_cursor().executemany(sql, param_list)
